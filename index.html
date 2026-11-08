@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#11151d">
+    <meta name="description" content="一个面向 Windows 和 macOS 的 Minecraft Java 版启动器。">
+    <title>方块启动器</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <a class="brand" href="#" aria-label="方块启动器首页">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span>方块<span class="brand-light">启动器</span></span>
+        </a>
+
+        <div class="nav-label">工作台</div>
+        <nav class="navigation">
+          <button class="nav-item is-active" type="button" data-view="library" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">▦</span>
+            <span>游戏库</span>
+          </button>
+          <button class="nav-item" type="button" data-view="downloads">
+            <span class="nav-icon" aria-hidden="true">↓</span>
+            <span>下载中心</span>
+          </button>
+          <button class="nav-item" type="button" data-view="settings">
+            <span class="nav-icon" aria-hidden="true">⚙</span>
+            <span>启动设置</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-note">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>完整下载与启动 · 第 4 步</span>
+        </div>
+        <div class="sidebar-footer">
+          <span class="avatar" aria-hidden="true">方</span>
+          <span class="profile-copy"><strong id="profile-name">未登录</strong><small id="profile-status">需要正版账号</small></span>
+          <button class="profile-menu account-button" id="account-button" type="button">登录</button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>工作台</span><span class="breadcrumb-divider">/</span><strong id="current-section">游戏库</strong></div>
+          <div class="topbar-actions">
+            <span class="platform-badge"><span aria-hidden="true">◈</span> Windows · macOS</span>
+            <button class="icon-button" type="button" aria-label="通知" title="通知">♧</button>
+          </div>
+        </header>
+
+        <section class="page-content" id="library-view">
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow">YOUR NEXT ADVENTURE</p>
+              <h1>准备好开始冒险了吗？</h1>
+              <p class="welcome-copy">管理你的游戏与版本，下一段旅程从这里出发。</p>
+            </div>
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <span class="visually-hidden">搜索游戏</span>
+              <input id="game-search" type="search" placeholder="搜索游戏..." autocomplete="off">
+              <kbd>/</kbd>
+            </label>
+          </div>
+
+          <section class="featured-card" aria-labelledby="featured-title">
+            <div class="featured-art" aria-hidden="true">
+              <div class="sun"></div>
+              <div class="mountain mountain-back"></div>
+              <div class="mountain mountain-front"></div>
+              <div class="ground"></div>
+              <div class="voxel voxel-one"></div>
+              <div class="voxel voxel-two"></div>
+              <div class="voxel voxel-three"></div>
+              <div class="art-caption">BUILD YOUR WORLD</div>
+            </div>
+            <div class="featured-copy">
+              <div class="game-label"><span class="game-label-dot"></span> JAVA EDITION</div>
+              <h2 id="featured-title">Minecraft</h2>
+              <p>一个世界，无限可能。建造、探索，开启只属于你的冒险。</p>
+              <div class="featured-meta">
+                <span class="status-pill"><span class="status-dot status-dot-muted"></span> 尚未安装</span>
+                <span class="meta-separator"></span>
+                <span id="java-status">正在检查 Java…</span>
+              </div>
+              <div class="launch-row">
+                <label class="launch-version-field">
+                  <span class="visually-hidden">选择已安装版本</span>
+                  <select id="installed-version-select" aria-label="选择已安装版本" disabled>
+                    <option value="">尚未安装</option>
+                  </select>
+                </label>
+                <button class="launch-button" id="launch-game" type="button" disabled>
+                  <span aria-hidden="true">▶</span>
+                  <span>启动游戏</span>
+                </button>
+              </div>
+              <div class="game-task-state" id="game-task-state" role="status" aria-live="polite" hidden></div>
+            </div>
+            <div class="card-corner" aria-hidden="true">01</div>
+          </section>
+
+          <div class="section-heading">
+            <div>
+              <h2>我的游戏</h2>
+              <p>已添加到启动器的游戏</p>
+            </div>
+            <span class="game-count"><span id="visible-count">1</span> 款游戏</span>
+          </div>
+
+          <div class="game-grid" id="game-grid">
+            <article class="game-card" data-search="minecraft java edition 沙盒冒险">
+              <div class="game-card-art" aria-hidden="true">
+                <div class="mini-sky"></div>
+                <div class="mini-hill"></div>
+                <div class="mini-grass"></div>
+                <div class="mini-block"></div>
+                <div class="mini-title">MINECRAFT</div>
+              </div>
+              <div class="game-card-body">
+                <div>
+                  <h3>Minecraft</h3>
+                  <p>Java Edition · 沙盒冒险</p>
+                </div>
+                <span class="game-card-menu" aria-label="更多选项">···</span>
+              </div>
+              <div class="game-card-status"><span class="status-dot status-dot-muted"></span> 等待安装</div>
+            </article>
+
+            <article class="add-card" aria-label="添加其他游戏">
+              <div class="add-card-icon" aria-hidden="true">+</div>
+              <strong>添加其他游戏</strong>
+              <span>更多游戏支持将在后续版本开放</span>
+            </article>
+          </div>
+
+          <div class="empty-search" id="empty-search" hidden>
+            <span aria-hidden="true">⌕</span>
+            <strong>没有找到匹配的游戏</strong>
+            <span>试试其他关键词</span>
+          </div>
+
+          <section class="next-step" aria-label="开发进度">
+            <div class="next-step-icon" aria-hidden="true">✦</div>
+            <div>
+              <strong>正在搭建你的游戏工作台</strong>
+              <p>接下来将打包 Windows 和 macOS 桌面安装包，并继续完善多版本与大型整合包支持。</p>
+            </div>
+            <span class="step-counter">04 <span>/ 04</span></span>
+          </section>
+          <footer class="page-footer">方块启动器 <span>·</span> 早期预览版</footer>
+        </section>
+
+        <section class="page-content downloads-view" id="downloads-view" hidden>
+          <p class="eyebrow">DOWNLOAD CENTER</p>
+          <h1>下载中心</h1>
+          <p class="download-intro">浏览 Mojang 官方版本清单，在本机完整安装原版 Minecraft Java 版。</p>
+
+          <section class="catalog-panel" aria-label="Minecraft 版本下载">
+            <div class="catalog-toolbar">
+              <label class="catalog-field">
+                <span>版本类型</span>
+                <select id="version-type">
+                  <option value="release">正式版</option>
+                  <option value="snapshot">快照版</option>
+                  <option value="all">全部版本</option>
+                </select>
+              </label>
+              <label class="catalog-field catalog-search">
+                <span>搜索版本</span>
+                <input id="version-search" type="search" placeholder="例如 1.21.4" autocomplete="off">
+              </label>
+              <label class="catalog-field version-select-field">
+                <span>选择版本</span>
+                <select id="version-select" disabled>
+                  <option value="">正在读取官方版本清单…</option>
+                </select>
+              </label>
+              <button class="refresh-button" id="refresh-versions" type="button" aria-label="重新读取版本清单" title="重新读取版本清单">↻</button>
+            </div>
+
+            <div class="catalog-state" id="catalog-state" role="status" aria-live="polite">
+              <span class="loading-spinner" aria-hidden="true"></span>
+              <span>正在连接 Mojang 官方版本清单…</span>
+            </div>
+
+            <article class="version-detail" id="version-detail" hidden>
+              <div class="version-heading">
+                <div>
+                  <span class="version-type-badge" id="version-type-badge">正式版</span>
+                  <h2 id="selected-version">Minecraft</h2>
+                  <p id="version-release-date"></p>
+                  <p id="required-java"></p>
+                </div>
+                <span class="file-size" id="client-file-size"></span>
+              </div>
+              <div class="download-actions">
+                <button class="download-button" id="download-client" type="button" disabled>
+                  <span aria-hidden="true">↓</span>
+                  <span>完整安装游戏</span>
+                </button>
+                <button class="java-download-button" id="download-java" type="button" disabled>选择版本后下载 Java</button>
+                <button class="cancel-download-button" id="cancel-download" type="button" hidden>取消</button>
+              </div>
+              <div class="download-progress" id="download-progress" hidden>
+                <div class="progress-label">
+                  <span id="download-status">准备下载…</span>
+                  <span id="download-percent"></span>
+                </div>
+                <progress id="download-progress-bar" max="100" value="0"></progress>
+              </div>
+            </article>
+          </div>
+
+          <div class="download-notice" role="note">
+            <span class="notice-icon" aria-hidden="true">i</span>
+            <span>完整安装会下载客户端、依赖、原生库和游戏资源，并校验官方 SHA-1 与文件大小。若本机没有兼容 Java，可下载所选版本匹配的 Mojang 官方运行时；启动游戏仍需拥有 Minecraft Java 版授权的 Microsoft 账号。</span>
+          </div>
+          <footer class="page-footer">方块启动器 <span>·</span> 官方版本清单</footer>
+        </section>
+
+        <section class="page-content settings-view" id="settings-view" aria-labelledby="settings-title" hidden>
+          <p class="eyebrow">LAUNCH SETTINGS</p>
+          <h1 id="settings-title">游戏启动设置</h1>
+          <p class="settings-intro">设置游戏运行时使用的内存和 Java 参数；保存后由本机启动器在运行游戏时应用。</p>
+
+          <form class="settings-form" id="launcher-settings-form">
+            <section class="settings-card" aria-labelledby="account-settings-title">
+              <div class="settings-card-heading">
+                <span class="settings-card-icon" aria-hidden="true">◉</span>
+                <div>
+                  <h2 id="account-settings-title">正版账号登录</h2>
+                  <p>使用 Microsoft 设备代码登录，不会要求你把密码交给启动器</p>
+                </div>
+              </div>
+              <label class="catalog-field" for="microsoft-client-id">
+                <span>Microsoft OAuth 公共客户端 ID</span>
+                <input id="microsoft-client-id" type="text" inputmode="text" autocomplete="off" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+              </label>
+              <p class="field-help">需在 Microsoft Entra 注册“公共客户端/移动和桌面应用”，允许设备代码流。Client ID 是公开标识，不要填写 Client Secret。也可在启动器进程环境变量中设置 MC_PCL_CLIENT_ID。</p>
+              <div class="settings-actions">
+                <p class="settings-status" id="client-id-status" role="status" aria-live="polite">登录配置保存在本机。</p>
+                <button class="reset-button" id="settings-login" type="button">Microsoft 账号登录</button>
+                <button class="save-button" id="save-client-id" type="button">保存登录配置</button>
+              </div>
+            </section>
+            <section class="settings-card" aria-labelledby="memory-title">
+              <div class="settings-card-heading">
+                <span class="settings-card-icon" aria-hidden="true">▤</span>
+                <div>
+                  <h2 id="memory-title">游戏内存</h2>
+                  <p>设置分配给 Minecraft 的最大内存</p>
+                </div>
+              </div>
+              <label class="memory-control" for="memory-limit">
+                <span>最大内存</span>
+                <span class="memory-value"><output id="memory-value" for="memory-limit">4</output> GB</span>
+              </label>
+              <input id="memory-limit" name="memory" type="range" min="2" max="16" step="1" value="4">
+              <div class="range-labels"><span>2 GB</span><span>16 GB</span></div>
+              <p class="field-help">大型整合包通常需要更多内存；请为系统和其他程序留出足够空间。</p>
+            </section>
+
+            <section class="settings-card" aria-labelledby="jvm-title">
+              <div class="settings-card-heading">
+                <span class="settings-card-icon" aria-hidden="true">⌘</span>
+                <div>
+                  <h2 id="jvm-title">Java 虚拟机参数</h2>
+                  <p>每行填写一个参数，例如 <code>-XX:+UseG1GC</code></p>
+                </div>
+              </div>
+              <label class="visually-hidden" for="jvm-arguments">Java 虚拟机参数，每行一个</label>
+              <textarea id="jvm-arguments" name="jvmArguments" rows="5" maxlength="1000" spellcheck="false" placeholder="-XX:+UseG1GC"></textarea>
+              <p class="field-help">参数必须以 <code>-</code> 开头且每行只能包含一个参数；暂不支持带空格的参数值。</p>
+            </section>
+
+            <div class="settings-notice" role="note">
+              <span class="notice-icon" aria-hidden="true">i</span>
+              <span>内存与 Java 参数由本机启动器保存。若缺少某版本所需的 Java，请在下载中心选择该版本并下载匹配的官方运行时。</span>
+            </div>
+            <div class="settings-actions">
+              <p class="settings-status" id="settings-status" role="status" aria-live="polite">设置尚未保存。</p>
+              <button class="reset-button" type="button" id="reset-settings">恢复默认</button>
+              <button class="save-button" type="submit" id="save-settings">保存设置</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <dialog class="login-dialog" id="login-dialog" aria-labelledby="login-title">
+      <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="关闭" value="close">×</button></form>
+      <p class="eyebrow">MICROSOFT ACCOUNT</p>
+      <h2 id="login-title">登录 Minecraft</h2>
+      <p class="login-description">启动器不会接触你的 Microsoft 密码。点击下方按钮后，请在 Microsoft 官方页面输入显示的代码。</p>
+      <div class="login-code-block" id="login-code-block" hidden>
+        <span>在 Microsoft 登录页面输入此代码</span>
+        <strong id="login-user-code"></strong>
+        <a id="login-verification-link" href="https://microsoft.com/link" target="_blank" rel="noopener noreferrer">打开 Microsoft 登录页面 ↗</a>
+        <span class="login-poll-status" id="login-poll-status" role="status" aria-live="polite">等待你完成登录…</span>
+      </div>
+      <p class="login-error" id="login-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="reset-button" id="logout-account" type="button" hidden>退出登录</button>
+        <button class="save-button" id="start-login" type="button">使用 Microsoft 登录</button>
+      </div>
+    </dialog>
+  </body>
+</html>
